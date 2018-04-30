@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  isCollapsed = true;
+
+  toggleMenuCollapse(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }
