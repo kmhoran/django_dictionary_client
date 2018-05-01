@@ -12,4 +12,8 @@ export class AppComponent {
   toggleMenuCollapse(): void {
     this.isCollapsed = !this.isCollapsed;
   }
+
+  closeMenuCollapse(): void {
+    this.isCollapsed = true;
+  }
 }
