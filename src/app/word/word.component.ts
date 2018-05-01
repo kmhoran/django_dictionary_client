@@ -14,7 +14,6 @@ export class WordComponent implements OnInit {
     this.wordId = this._route.snapshot.paramMap.get('id');
   }
 
-
   wordId = null;
   ngOnInit() {
   }
