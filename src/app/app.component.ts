@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 
 import { WordHttpService } from './shared/word-http.service';
-import { DefinitionHttpService } from './shared/definition-http.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ WordHttpService, DefinitionHttpService ]
+  providers: [ WordHttpService ]
 })
 export class AppComponent {
   title = 'app';
