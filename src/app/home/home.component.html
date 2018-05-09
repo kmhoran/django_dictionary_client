@@ -1,17 +1,8 @@
-<p>
-  home works!
-</p>
-
-<a [routerLink]="['/word/this Is A Word']">Link to word</a>
-
+<h1>Word List</h1>
 <hr/>
-Word List
 <ul>
   <li *ngFor="let word of wordList">
     <a [routerLink]="['/word', word.id]">
       {{word.name}}
     </a></li>
 </ul>
-
-
-

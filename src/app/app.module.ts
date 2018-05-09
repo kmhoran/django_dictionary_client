@@ -3,20 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { HttpClient } from 'selenium-webdriver/http';
+
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { WordComponent } from './word/word.component';
-import { HttpClient } from 'selenium-webdriver/http';
+
+import { WordDefinitionComponent } from './word/word-definition.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    WordComponent
+    WordComponent,
+    WordDefinitionComponent
   ],
   imports: [
     BrowserModule,

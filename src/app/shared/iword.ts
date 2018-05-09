@@ -1,11 +1,11 @@
 export interface IWord {
     id: number;
     name: string;
-    definitions: IDefinition[];
+    definition_set: IDefinition[];
 }
 
 export interface IDefinition {
     word: number;
     definition: string;
-    partOfSpeech: string;
+    part_of_speech: string;
 }

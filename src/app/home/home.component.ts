@@ -19,11 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this._wordService.getWords()
     .subscribe((data: IWord[]) => {
-      this._zone.run(() => {
-        this.wordList = data;
-        console.log('got data! ', data);
-        console.log('got word!', this.wordList);
-    });
+      this._zone.run(() => { this.wordList = data; });
     });
   }
 
