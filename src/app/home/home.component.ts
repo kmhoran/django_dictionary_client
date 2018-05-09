@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
 
 
@@ -14,12 +14,17 @@ export class HomeComponent implements OnInit {
   wordList: IWord[] = [];
 
   response: any;
-  constructor(private _wordService: WordHttpService) {}
+  constructor(private _zone: NgZone, private _wordService: WordHttpService) {}
 
   ngOnInit() {
-    this.wordList = this._wordService.getWords();
-    this.response = this._wordService.getTEST()
-    .subscribe((data: any) => this.response = data[0]);
+    this._wordService.getWords()
+    .subscribe((data: IWord[]) => {
+      this._zone.run(() => {
+        this.wordList = data;
+        console.log('got data! ', data);
+        console.log('got word!', this.wordList);
+    });
+    });
   }
 
 }

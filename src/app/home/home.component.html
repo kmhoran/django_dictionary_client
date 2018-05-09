@@ -5,6 +5,13 @@
 <a [routerLink]="['/word/this Is A Word']">Link to word</a>
 
 <hr/>
-<p>{{response.name}}</p>
+Word List
+<ul>
+  <li *ngFor="let word of wordList">
+    <a [routerLink]="['/word', word.id]">
+      {{word.name}}
+    </a></li>
+</ul>
+
 
 
