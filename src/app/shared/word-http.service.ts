@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable ,  throwError as _throw } from 'rxjs';
-
+import { Observable ,  throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { IWord } from './iword';
 import { HttpResponse } from 'selenium-webdriver/http';
@@ -12,6 +12,7 @@ const httpOptions = {
     'Content-Type':  'application/json'
   })
 };
+
 
 @Injectable()
 export class WordHttpService {
@@ -31,12 +32,12 @@ export class WordHttpService {
     return this._http.get<IWord>(url);
   }
 
-  // addWord(word: IWord): Observable<IWord> {
-  //   return this._http.post(this.wordUrl, word, httpOptions)
-  //   .pipe(
-  //     catch(this.handleError('addWord', word))
-  //   );
-  //  }
+  addWord(word: IWord): Observable<IWord> {
+    return this._http.post<IWord>(this.wordUrl, word, httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
 
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -50,7 +51,7 @@ export class WordHttpService {
         `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
-    return _throw(
+    return throwError(
       'Something bad happened; please try again later.');
   }
 }
