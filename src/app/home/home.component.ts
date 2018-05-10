@@ -9,6 +9,7 @@ import { IWord } from '../shared/iword';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
   wordList: IWord[] = [];
   wordToAdd: string;
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit {
   }
 
   addWord() {
-    // redirect to new word page upon creation
+    // Server is expecting word object
     const newWord: IWord = {
       id: 0,
       name: this.wordToAdd,
@@ -35,8 +36,14 @@ export class HomeComponent implements OnInit {
 
     this._wordService.addWord(newWord)
     .subscribe((data: IWord) => {
-      this._router.navigate(['/word', { id: data.id }]);
+      this._zone.run(() => {
+        this.wordToAdd = null;
+
+        // Redirect to new word page upon creation
+        if (data.id != null || data.id > 0) {
+          this._router.navigate(['/word', data.id]);
+        }
+      });
     });
   }
-
 }

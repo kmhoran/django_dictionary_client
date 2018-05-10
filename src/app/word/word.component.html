@@ -1,6 +1,28 @@
 <h1>
   {{word?.name}}
 </h1>
+<form class="form-inline my-2 my-lg-0"
+      #definitionForm="ngForm"
+      (ngSubmit)="addDefinition()">
+  
+  <select class="form-control mr-sm-2"
+          [(ngModel)]="definitionPartOfSpeech"
+          required
+          name="definitionPartOfSpeech">
+    <option *ngFor="let item of partOfSpeechList"
+            [value]="item">{{item}}</option>
+  </select>
+  <textarea class="form-control mr-sm-2" 
+         type="text" 
+         placeholder="Add a definition" 
+         [(ngModel)]="definitionToAdd"
+         name="definitionToAdd"
+         required></textarea>
+  <button class="btn btn-outline-success my-2 my-sm-0" 
+          type="submit"
+          [disabled]="!definitionForm.form.valid">Add</button>
+</form>
+<hr/>
 <app-word-definition *ngFor="let meaning of word?.definition_set"
                      [partOfSpeech]="meaning.part_of_speech"
                      [actualDefinition]="meaning.definition"></app-word-definition>
