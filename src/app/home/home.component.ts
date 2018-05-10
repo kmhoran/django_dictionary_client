@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 
 
-
 import { WordHttpService } from '../shared/word-http.service';
 import { IWord } from '../shared/iword';
 
@@ -12,8 +11,8 @@ import { IWord } from '../shared/iword';
 })
 export class HomeComponent implements OnInit {
   wordList: IWord[] = [];
+  wordToAdd: string;
 
-  response: any;
   constructor(private _zone: NgZone, private _wordService: WordHttpService) {}
 
   ngOnInit() {
@@ -22,5 +21,9 @@ export class HomeComponent implements OnInit {
       this._zone.run(() => { this.wordList = data; });
     });
   }
+
+  // addWord(): void {
+  //   this._wordService
+  // }
 
 }

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from 'selenium-webdriver/http';
-
+import { FormsModule } from '@angular/forms';
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
@@ -25,6 +25,7 @@ import { WordDefinitionComponent } from './word/word-definition.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent },
       {path: 'word/:id', component: WordComponent },
