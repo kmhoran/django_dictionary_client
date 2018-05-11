@@ -24,7 +24,10 @@ export class WordComponent implements OnInit {
 
   ngOnInit() {
     this.wordId = this._route.snapshot.paramMap.get('id');
+    this.getPageWord();
+  }
 
+  getPageWord() {
     this._wordService.getWord(this.wordId)
     .subscribe((data: IWord) => {
       this._zone.run(() => {
@@ -34,6 +37,7 @@ export class WordComponent implements OnInit {
     });
   }
 
+
   addDefinition() {
     console.log('form submitted');
     const newDefinition: IDefinition = {
@@ -42,6 +46,13 @@ export class WordComponent implements OnInit {
         definition: this.definitionToAdd
     };
     console.log(newDefinition);
+
+    this._wordService.addDefinition(newDefinition)
+    .subscribe((data: any) => {
+      this._zone.run(() => {
+        this.getPageWord();
+      });
+    });
   }
 
 }

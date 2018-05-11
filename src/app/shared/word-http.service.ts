@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable ,  throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { IWord } from './iword';
+import { IWord, IDefinition } from './iword';
 import { HttpResponse } from 'selenium-webdriver/http';
 
 const httpOptions = {
@@ -24,19 +24,27 @@ export class WordHttpService {
   constructor(private _http: HttpClient) { }
 
   getWords(): Observable<IWord[]> {
-    return this._http.get<IWord[]>(this.wordUrl);
+    return this._http.get<IWord[]>(this.wordUrl)
+    .pipe(catchError(this.handleError));
   }
 
   getWord(id: number): Observable<IWord> {
     const url = this.wordUrl.concat(id.toString(), '/');
-    return this._http.get<IWord>(url);
+    return this._http.get<IWord>(url)
+    .pipe(catchError(this.handleError));
   }
 
   addWord(word: IWord): Observable<IWord> {
     return this._http.post<IWord>(this.wordUrl, word, httpOptions)
-    .pipe(
-      catchError(this.handleError)
-    );
+    .pipe(catchError(this.handleError));
+  }
+
+  addDefinition(definition: IDefinition): any {
+    return this._http.post(
+      this.definitionUrl,
+      definition,
+      httpOptions)
+    .pipe(catchError(this.handleError));
   }
 
   handleError(error: HttpErrorResponse) {
