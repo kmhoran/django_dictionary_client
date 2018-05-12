@@ -50,6 +50,8 @@ export class WordComponent implements OnInit {
     this._wordService.addDefinition(newDefinition)
     .subscribe((data: any) => {
       this._zone.run(() => {
+        this.definitionToAdd = null;
+        this.definitionPartOfSpeech = null;
         this.getPageWord();
       });
     });
