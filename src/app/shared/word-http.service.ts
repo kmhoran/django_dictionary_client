@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable ,  throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 import { IWord, IDefinition } from './iword';
 import { HttpResponse } from 'selenium-webdriver/http';
 
@@ -16,8 +18,8 @@ const httpOptions = {
 
 @Injectable()
 export class WordHttpService {
-  wordUrl = 'http://127.0.0.1:8000/api/word/';
-  definitionUrl = 'http://127.0.0.1:8000/api/definition/';
+  wordUrl = environment.serverUrl + 'word/';
+  definitionUrl = environment.serverUrl + 'definition/';
 
 
 
