@@ -15,13 +15,10 @@ const httpOptions = {
   })
 };
 
-
 @Injectable()
 export class WordHttpService {
   wordUrl = environment.serverUrl + 'word/';
   definitionUrl = environment.serverUrl + 'definition/';
-
-
 
   constructor(private _http: HttpClient) { }
 

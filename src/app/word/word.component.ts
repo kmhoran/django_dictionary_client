@@ -32,20 +32,17 @@ export class WordComponent implements OnInit {
     .subscribe((data: IWord) => {
       this._zone.run(() => {
         this.word = data;
-        console.log(this.word);
       });
     });
   }
 
 
   addDefinition() {
-    console.log('form submitted');
     const newDefinition: IDefinition = {
         word: this.wordId,
         part_of_speech: this.definitionPartOfSpeech,
         definition: this.definitionToAdd
     };
-    console.log(newDefinition);
 
     this._wordService.addDefinition(newDefinition)
     .subscribe((data: any) => {

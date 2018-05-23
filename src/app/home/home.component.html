@@ -1,18 +1,20 @@
-
 <h1>Word List</h1>
 <hr/>
-<form class="form-inline my-2 my-lg-0">
+<form class="form-inline my-2 my-lg-0"
+      #wordForm="ngForm"
+      (ngSubmit)="addWord()">
   <input class="form-control mr-sm-2" 
          type="text" 
          placeholder="Add a word" 
          [(ngModel)]="wordToAdd"
          name="wordToAdd"
          required
-         aria-label="Add">
+         aria-label="Add"
+         autocomplete="off" />
 
   <button class="btn btn-outline-success my-2 my-sm-0" 
-          type="button"
-          (click)="addWord()">Add</button>
+          type="submit"
+          [disabled]="!wordForm.form.valid">Add</button>
 </form>
 <br/>
 <ul>
