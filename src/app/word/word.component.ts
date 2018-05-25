@@ -11,7 +11,7 @@ import { IWord, IDefinition } from '../shared/iword';
   styleUrls: ['./word.component.css']
 })
 export class WordComponent implements OnInit {
-  wordId = null;
+  wordId: number;
   word: IWord;
   definitionToAdd: string;
   definitionPartOfSpeech: string;
@@ -23,7 +23,7 @@ export class WordComponent implements OnInit {
 
 
   ngOnInit() {
-    this.wordId = this._route.snapshot.paramMap.get('id');
+    this.wordId = +this._route.snapshot.paramMap.get('id');
     this.getPageWord();
   }
 
