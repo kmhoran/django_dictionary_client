@@ -31,7 +31,7 @@ import { WordDefinitionComponent } from './word/word-definition.component';
       {path: 'word/:id', component: WordComponent },
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}
-    ]),
+    ], {useHash: true}),
     CollapseModule.forRoot()
   ],
   providers: [],
