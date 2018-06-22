@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { WordHttpService } from '../shared/word-http.service';
@@ -15,14 +15,13 @@ export class HomeComponent implements OnInit {
   wordToAdd: string;
 
   constructor(
-    private _zone: NgZone,
     private _wordService: WordHttpService,
     private _router: Router) {}
 
   ngOnInit() {
     this._wordService.getWords()
     .subscribe((data: IWord[]) => {
-      this._zone.run(() => { this.wordList = data; });
+      this.wordList = data;
     });
   }
 
@@ -36,7 +35,7 @@ export class HomeComponent implements OnInit {
 
     this._wordService.addWord(newWord)
     .subscribe((data: IWord) => {
-      this._zone.run(() => {
+
         this.wordToAdd = null;
 
         // Redirect to new word page upon creation
@@ -44,6 +43,6 @@ export class HomeComponent implements OnInit {
           this._router.navigate(['/word', data.id]);
         }
       });
-    });
+
   }
 }

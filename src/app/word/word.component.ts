@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,7 +18,6 @@ export class WordComponent implements OnInit {
   partOfSpeechList = ['noun', 'adjective', 'verb', 'adverb'];
 
   constructor(private _route: ActivatedRoute,
-              private _zone: NgZone,
               private _wordService: WordHttpService) {}
 
 
@@ -30,9 +29,7 @@ export class WordComponent implements OnInit {
   getPageWord() {
     this._wordService.getWord(this.wordId)
     .subscribe((data: IWord) => {
-      this._zone.run(() => {
         this.word = data;
-      });
     });
   }
 
@@ -46,11 +43,9 @@ export class WordComponent implements OnInit {
 
     this._wordService.addDefinition(newDefinition)
     .subscribe((data: any) => {
-      this._zone.run(() => {
         this.definitionToAdd = null;
         this.definitionPartOfSpeech = null;
         this.getPageWord();
-      });
     });
   }
 
